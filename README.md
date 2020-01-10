@@ -2,6 +2,11 @@
 
 > vue日益成熟（虽然我还在用2.0没有上到3.0），但是已经成为了主流的前端开发框架之一，于是衍生出了很多跨平台应用，各种常见的web及h5，在这个图片满天飞的时代，避免不了的就是上传图片，于是乎，诞生了一款来着xyxiao001大佬的[vue-cropper](https://github.com/xyxiao001/vue-cropper)，功能丰富还好用，唯一不足的就是对h5的样式支持比较滞后，于是乎这款超好用的vue-cropper-h5出现了！！！
 
+## 地址
+
+npm：[https://www.npmjs.com/package/vue-cropper-h5](https://www.npmjs.com/package/vue-cropper-h5)
+git：[https://github.com/2277419213/vue-cropper-h5](https://github.com/2277419213/vue-cropper-h5)
+
 ## 食用方式
 
 ```
@@ -91,6 +96,7 @@ export default {
 
 ## 效果演示
 
+GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs.com/package/vue-cropper-h5)查看效果演示
 ![](http://gy7.gdzcbw.cn/file/h5img/cropperdome.gif)
 
 ## 配置文件及默认配置
