@@ -137,12 +137,6 @@ GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs
         <td>true || false</td>
     </tr>
     <tr>
-        <td>autoCrop</td>
-        <td>是否默认生成截图框</td>
-        <td>true</td>
-        <td>true || false</td>
-    </tr>
-    <tr>
         <td>autoCropWidth</td>
         <td>默认生成截图框宽度</td>
         <td>容器的80%</td>
@@ -239,6 +233,9 @@ GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs
 #####  @getbase64Data 获取裁剪完成的base64地址
 
 ## 版本
+
+### 1.0.8
+修复一下裁剪框参数不生效的问题
 
 ### 1.0.7
 如你所见，当前版本，1.0.2和1.0.0已经用不了了，如果有兴趣或者意见建议，欢迎Wechat告诉我

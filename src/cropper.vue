@@ -18,7 +18,7 @@
           :outputType="(option.outputType==undefined||option.outputType=='')?DefaultOption.outputType:option.outputType"
           :info="(option.info==undefined||option.info=='')?DefaultOption.info:option.info"
           :canScale="(option.canScale==undefined||option.canScale=='')?DefaultOption.canScale:option.canScale"
-          :autoCrop="(option.autoCrop==undefined||option.autoCrop=='')?DefaultOption.autoCrop:option.autoCrop"
+          :autoCrop="DefaultOption.autoCrop"
           :autoCropWidth="(option.autoCropWidth==undefined||option.autoCropWidth=='')?DefaultOption.autoCropWidth:option.autoCropWidth"
           :autoCropHeight="(option.autoCropHeight==undefined||option.autoCropHeight=='')?DefaultOption.autoCropHeight:option.autoCropHeight"
           :fixed="(option.fixed==undefined||option.fixed=='')?DefaultOption.fixed:option.fixed"
@@ -64,7 +64,7 @@ export default {
         outputType: "png", //裁剪生成图片的格式,默认png
         info: false, //裁剪框的大小信息
         canScale: true, //图片是否允许滚轮缩放
-        autoCrop: true, //是否默认生成截图框
+        autoCrop: false, //是否默认生成截图框
         autoCropWidth: 0, //默认生成截图框宽度
         autoCropHeight: 0, //默认生成截图框高度
         fixed: true, //是否开启截图框宽高固定比例
@@ -79,7 +79,7 @@ export default {
         infoTrue: false, //true 为展示真实输出图片宽高 false 展示看到的截图框宽高
         maxImgSize: 2000, //限制图片最大宽度和高度
         enlarge: 1, //图片根据截图框输出比例倍数
-        mode: "contain" //图片默认渲染方式	
+        mode: "contain" //图片默认渲染方式
       }
     };
   },
@@ -94,6 +94,7 @@ export default {
         reader.readAsDataURL(photourl);
         reader.onload = e => {
           this.img = e.target["result"];
+          this.DefaultOption.autoCrop = true;
           this.addsolide();
         };
       }
@@ -101,7 +102,7 @@ export default {
     //确定裁剪
     tailoring() {
       this.$refs.cropper.getCropData(data => {
-        console.log("裁剪")
+        // console.log("裁剪");
         this.$emit("getbase64Data", data);
         this.img = "";
       });
