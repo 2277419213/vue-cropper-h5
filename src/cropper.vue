@@ -14,26 +14,26 @@
           id="cropper"
           ref="cropper"
           :img="img"
-          :outputSize="(option.outputSize==undefined||option.outputSize=='')?DefaultOption.outputSize:option.outputSize"
-          :outputType="(option.outputType==undefined||option.outputType=='')?DefaultOption.outputType:option.outputType"
-          :info="(option.info==undefined||option.info=='')?DefaultOption.info:option.info"
-          :canScale="(option.canScale==undefined||option.canScale=='')?DefaultOption.canScale:option.canScale"
+          :outputSize="(option.outputSize==undefined||JSON.stringify(option.outputSize)=='')?DefaultOption.outputSize:option.outputSize"
+          :outputType="(option.outputType==undefined||JSON.stringify(option.outputType)=='')?DefaultOption.outputType:option.outputType"
+          :info="(option.info==undefined||JSON.stringify(option.info)=='')?DefaultOption.info:option.info"
+          :canScale="(option.canScale==undefined||JSON.stringify(option.canScale)=='')?DefaultOption.canScale:option.canScale"
           :autoCrop="DefaultOption.autoCrop"
-          :autoCropWidth="(option.autoCropWidth==undefined||option.autoCropWidth=='')?DefaultOption.autoCropWidth:option.autoCropWidth"
-          :autoCropHeight="(option.autoCropHeight==undefined||option.autoCropHeight=='')?DefaultOption.autoCropHeight:option.autoCropHeight"
-          :fixed="(option.fixed==undefined||option.fixed=='')?DefaultOption.fixed:option.fixed"
-          :fixedNumber="(option.fixedNumber==undefined||option.fixedNumber=='')?DefaultOption.fixedNumber:option.fixedNumber"
-          :full="(option.full==undefined||option.full=='')?DefaultOption.full:option.full"
-          :fixedBox="(option.fixedBox==undefined||option.fixedBox=='')?DefaultOption.fixedBox:option.fixedBox"
-          :canMove="(option.canMove==undefined||option.canMove=='')?DefaultOption.canMove:option.canMove"
-          :canMoveBox="(option.canMoveBox==undefined||option.canMoveBox=='')?DefaultOption.canMoveBox:option.canMoveBox"
-          :original="(option.original==undefined||option.original=='')?DefaultOption.original:option.original"
-          :centerBox="(option.centerBox==undefined||option.centerBox=='')?DefaultOption.centerBox:option.centerBox"
-          :high="(option.high==undefined||option.high=='')?DefaultOption.high:option.high"
-          :infoTrue="(option.infoTrue==undefined||option.infoTrue=='')?DefaultOption.infoTrue:option.infoTrue"
-          :maxImgSize="(option.maxImgSize==undefined||option.maxImgSize=='')?DefaultOption.maxImgSize:option.maxImgSize"
-          :enlarge="(option.enlarge==undefined||option.enlarge=='')?DefaultOption.enlarge:option.enlarge"
-          :mode="(option.mode==undefined||option.mode=='')?DefaultOption.mode:option.mode"
+          :autoCropWidth="(option.autoCropWidth==undefined||JSON.stringify(option.autoCropWidth)=='')?DefaultOption.autoCropWidth:option.autoCropWidth"
+          :autoCropHeight="(option.autoCropHeight==undefined||JSON.stringify(option.autoCropHeight)=='')?DefaultOption.autoCropHeight:option.autoCropHeight"
+          :fixed="(option.fixed==undefined||JSON.stringify(option.fixed)=='')?DefaultOption.fixed:option.fixed"
+          :fixedNumber="(option.fixedNumber==undefined||JSON.stringify(option.fixedNumber)=='')?DefaultOption.fixedNumber:option.fixedNumber"
+          :full="(option.full==undefined||JSON.stringify(option.full)=='')?DefaultOption.full:option.full"
+          :fixedBox="(option.fixedBox==undefined||JSON.stringify(option.fixedBox)=='')?DefaultOption.fixedBox:option.fixedBox"
+          :canMove="(option.canMove==undefined||JSON.stringify(option.canMove)=='')?DefaultOption.canMove:option.canMove"
+          :canMoveBox="(option.canMoveBox==undefined||JSON.stringify(option.canMoveBox)=='')?DefaultOption.canMoveBox:option.canMoveBox"
+          :original="(option.original==undefined||JSON.stringify(option.original)=='')?DefaultOption.original:option.original"
+          :centerBox="(option.centerBox==undefined||JSON.stringify(option.centerBox)=='')?DefaultOption.centerBox:option.centerBox"
+          :high="(option.high==undefined||JSON.stringify(option.high)=='')?DefaultOption.high:option.high"
+          :infoTrue="(option.infoTrue==undefined||JSON.stringify(option.infoTrue)=='')?DefaultOption.infoTrue:option.infoTrue"
+          :maxImgSize="(option.maxImgSize==undefined||JSON.stringify(option.maxImgSize)=='')?DefaultOption.maxImgSize:option.maxImgSize"
+          :enlarge="(option.enlarge==undefined||JSON.stringify(option.enlarge)=='')?DefaultOption.enlarge:option.enlarge"
+          :mode="(option.mode==undefined||JSON.stringify(option.mode)=='')?DefaultOption.mode:option.mode"
           @cropMoving="moving($event)"
           @imgMoving="moving($event)"
         ></vueCropper>
@@ -86,20 +86,26 @@ export default {
   watch: {},
   methods: {
     //选择照片
-    upphoto(e) {
+    async upphoto(e) {
       let photourl = e.target.files[0];
       this.$refs.headinput.value = null;
       if (photourl != undefined) {
+        this.img = await this.onloadimg(photourl);
+        this.DefaultOption.autoCrop = true;
+        setTimeout(() => {
+          this.addsolide();
+        }, 10);
+      }
+    },
+    //异步onload图片
+    onloadimg(photourl) {
+      return new Promise(function(resolve, reject) {
         let reader = new FileReader();
         reader.readAsDataURL(photourl);
         reader.onload = e => {
-          this.img = e.target["result"];
-          this.DefaultOption.autoCrop = true;
-          setTimeout(() => {
-            this.addsolide();
-          }, 10);
+          resolve(e.target["result"]);
         };
-      }
+      });
     },
     //确定裁剪
     tailoring() {
