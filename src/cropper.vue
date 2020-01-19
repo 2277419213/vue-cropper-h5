@@ -8,7 +8,7 @@
       @change="upphoto($event)"
       ref="headinput"
     />
-    <div class="bg" v-show="img!=''">
+    <div class="bg" v-if="img!=''">
       <div class="wrapper">
         <vueCropper
           id="cropper"
