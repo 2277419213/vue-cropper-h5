@@ -234,6 +234,9 @@ export default {
 
 ## 版本
 
+### 1.1.2
+添加transform-runtime
+
 ### 1.1.1
 采用异步方法onload图片
 
