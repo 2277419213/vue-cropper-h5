@@ -4,8 +4,8 @@
 
 ## 地址
 
-npm：[https://www.npmjs.com/package/vue-cropper-h5](https://www.npmjs.com/package/vue-cropper-h5)
-git：[https://github.com/2277419213/vue-cropper-h5](https://github.com/2277419213/vue-cropper-h5)
+###### npm：[https://www.npmjs.com/package/vue-cropper-h5](https://www.npmjs.com/package/vue-cropper-h5)
+###### git：[https://github.com/2277419213/vue-cropper-h5](https://github.com/2277419213/vue-cropper-h5)
 
 ## 食用方式
 
@@ -96,7 +96,7 @@ export default {
 
 ## 效果演示
 
-GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs.com/package/vue-cropper-h5)查看效果演示
+###### GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs.com/package/vue-cropper-h5)查看效果演示
 ![](http://gy7.gdzcbw.cn/file/h5img/cropperdome.gif)
 
 ## 配置文件及默认配置
@@ -230,9 +230,12 @@ GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs
 </table>
 
 ## 内置方法
-#####  @getbase64Data 获取裁剪完成的base64地址
+### @getbase64Data 获取裁剪完成的base64地址
 
 ## 版本
+
+### 1.0.9
+修复一下裁剪框初始化时堆积在左上角的问题
 
 ### 1.0.8
 修复一下裁剪框参数不生效的问题

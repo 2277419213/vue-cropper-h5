@@ -95,7 +95,9 @@ export default {
         reader.onload = e => {
           this.img = e.target["result"];
           this.DefaultOption.autoCrop = true;
-          this.addsolide();
+          setTimeout(() => {
+            this.addsolide();
+          }, 10);
         };
       }
     },
@@ -105,6 +107,7 @@ export default {
         // console.log("裁剪");
         this.$emit("getbase64Data", data);
         this.img = "";
+        this.DefaultOption.autoCrop = false;
       });
     },
     //旋转照片
