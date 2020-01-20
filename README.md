@@ -234,6 +234,9 @@ export default {
 
 ## 版本
 
+### 1.1.3
+同步更新原作者0.5版本vue-cropper,顺带限制了一下裁剪框最小大小
+
 ### 1.1.2
 添加transform-runtime
 
