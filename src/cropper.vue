@@ -9,7 +9,10 @@
       ref="headinput"
     />
     <div class="bg" v-if="img!=''">
-      <div class="btndiv" v-if="(option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton">
+      <div
+        class="btndiv"
+        v-if="(option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton"
+      >
         <div class="btn1" @click="img=''">取消</div>
         <div class="img" @click="rotating"></div>
         <div class="btn" @click="tailoring">确定</div>
@@ -43,7 +46,10 @@
           @imgMoving="moving($event)"
         ></vueCropper>
       </div>
-      <div class="btndiv" v-if="!((option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton)">
+      <div
+        class="btndiv"
+        v-if="!((option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton)"
+      >
         <div class="btn1" @click="img=''">取消</div>
         <div class="img" @click="rotating"></div>
         <div class="btn" @click="tailoring">确定</div>
@@ -65,7 +71,7 @@ export default {
     return {
       img: "",
       DefaultOption: {
-        ceilbutton: true, //顶部按钮，在底部
+        ceilbutton: false, //顶部按钮，默认底部
         outputSize: 1, //裁剪生成图片的质量
         outputType: "png", //裁剪生成图片的格式,默认png
         info: false, //裁剪框的大小信息
@@ -115,9 +121,15 @@ export default {
     },
     //确定裁剪
     tailoring() {
+      // 获取截图的base64数据
       this.$refs.cropper.getCropData(data => {
-        // console.log("裁剪");
         this.$emit("getbase64Data", data);
+        this.img = "";
+        this.DefaultOption.autoCrop = false;
+      });
+      // 获取截图的blob数据
+      this.$refs.cropper.getCropBlob(data => {
+        this.$emit("getblobData", data);
         this.img = "";
         this.DefaultOption.autoCrop = false;
       });

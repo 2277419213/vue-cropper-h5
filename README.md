@@ -32,8 +32,8 @@ Vue.use(H5Cropper)
   <div class="dome">
     <div class="cropper">
       <img :src="img" class="img" />
-      <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 -->
-      <H5Cropper :option="option" @getbase64Data="getbase64Data"></H5Cropper>
+      <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 2.14新增一个获取getblobData的方法,有需要的自取 -->
+      <H5Cropper :option="option" @getbase64Data="getbase64Data" @getblobData="getblobData"></H5Cropper>
     </div>
     <div class="info">
       <div>作者：居里栈栈</div>
@@ -237,9 +237,13 @@ export default {
 </table>
 
 ## 内置方法
-### @getbase64Data 获取裁剪完成的base64地址
+### @getbase64Data 获取裁剪完成的base64数据
+### @getblobData 获取裁剪完成的blob数据
 
 ## 版本
+
+### 1.1.5
+新增@getblobData方法,用于获取照片blob数据
 
 ### 1.1.4
 感谢网友@PROMISE提供的建议，由于很多不在微信浏览器使用，会有浏览器原生的菜单栏挡住底部按钮，现增加Boolean(ceilbutton),可以自行选择按钮在底部还是顶部，默认底部
