@@ -102,6 +102,7 @@ export default {
       let photourl = e.target.files[0];
       this.$refs.headinput.value = null;
       if (photourl != undefined) {
+        this.$emit("imgorigoinf", photourl);
         this.img = await this.onloadimg(photourl);
         this.DefaultOption.autoCrop = true;
         setTimeout(() => {
