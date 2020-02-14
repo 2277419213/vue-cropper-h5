@@ -71,7 +71,7 @@ export default {
   width: 80px;
   height: 80px;
   line-height: 80px;
-  /* 切记position: relative一点要有 */
+  /* 切记position: relative一定要有 */
   position: relative;
   border-radius: 80px;
   overflow: hidden;
@@ -90,6 +90,7 @@ export default {
   line-height: 40px;
   margin-left: 30px;
   flex: 1;
+  text-align: left;
 }
 </style>
 ```
@@ -112,6 +113,12 @@ export default {
     </tr>
   </thead>
   <tbody>
+    <tr>
+        <td>ceilbutton</td>
+        <td>操作按钮是否在顶部</td>
+        <td>false</td>
+        <td>true || false</td>
+    </tr>
     <tr>
         <td>outputSize</td>
         <td>裁剪生成图片的质量</td>
@@ -233,6 +240,9 @@ export default {
 ### @getbase64Data 获取裁剪完成的base64地址
 
 ## 版本
+
+### 1.1.4
+感谢网友@PROMISE提供的建议，由于很多不在微信浏览器使用，会有浏览器原生的菜单栏挡住底部按钮，现增加Boolean(ceilbutton),可以自行选择按钮在底部还是顶部，默认底部
 
 ### 1.1.3
 同步更新原作者0.5版本vue-cropper,顺带限制了一下裁剪框最小大小

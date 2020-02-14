@@ -9,6 +9,11 @@
       ref="headinput"
     />
     <div class="bg" v-if="img!=''">
+      <div class="btndiv" v-if="(option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton">
+        <div class="btn1" @click="img=''">取消</div>
+        <div class="img" @click="rotating"></div>
+        <div class="btn" @click="tailoring">确定</div>
+      </div>
       <div class="wrapper">
         <vueCropper
           id="cropper"
@@ -38,8 +43,8 @@
           @imgMoving="moving($event)"
         ></vueCropper>
       </div>
-      <div class="btndiv">
-        <div @click="img=''">取消</div>
+      <div class="btndiv" v-if="!((option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton)">
+        <div class="btn1" @click="img=''">取消</div>
         <div class="img" @click="rotating"></div>
         <div class="btn" @click="tailoring">确定</div>
       </div>
@@ -60,6 +65,7 @@ export default {
     return {
       img: "",
       DefaultOption: {
+        ceilbutton: true, //顶部按钮，在底部
         outputSize: 1, //裁剪生成图片的质量
         outputType: "png", //裁剪生成图片的格式,默认png
         info: false, //裁剪框的大小信息
@@ -303,6 +309,16 @@ export default {
   border-radius: 1.333vw;
   text-align: center;
   background-color: #ed594c;
+  margin-top: 2.667vw;
+}
+.btn1 {
+  height: 8vw;
+  line-height: 8vw;
+  font-size: 4vw;
+  width: 16vw;
+  border-radius: 1.333vw;
+  text-align: center;
+  background-color: #606266;
   margin-top: 2.667vw;
 }
 .img {
