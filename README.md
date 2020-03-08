@@ -230,7 +230,7 @@ export default {
     <tr>
         <td>mode</td>
         <td>图片默认渲染方式</td>
-        <td>contain</td>
+        <td>100%</td>
         <td>contain , cover, 100px, 100% auto</td>
     </tr>
   </tbody>
@@ -242,6 +242,9 @@ export default {
 ### @imgorigoinf 获取裁剪前照片的数据（File）
 
 ## 版本
+
+### 1.1.7
+部分码友反映称，原始图片太小会显示得很小，于是修改下默认渲染方式mode
 
 ### 1.1.6
 新增@imgorigoinf方法,用于获取裁剪前照片的数据（File）

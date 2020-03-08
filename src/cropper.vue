@@ -91,7 +91,7 @@ export default {
         infoTrue: false, //true 为展示真实输出图片宽高 false 展示看到的截图框宽高
         maxImgSize: 2000, //限制图片最大宽度和高度
         enlarge: 1, //图片根据截图框输出比例倍数
-        mode: "contain" //图片默认渲染方式
+        mode: "100%" //图片默认渲染方式
       }
     };
   },
