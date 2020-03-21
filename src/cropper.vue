@@ -297,6 +297,30 @@ export default {
         box.appendChild(RightBottomSide);
         box.appendChild(BottomRightSide);
       }
+    },
+
+    // Violet_ice紫冰 <violetice@aliyun.com>
+    /**
+     * 载入文件
+     * template:
+     *    <h5-cropper hide-input ref="cropper">
+     *
+     * javascript:
+     *    this.$refs.cropper.loadFile(<File>)
+     */
+    loadFile(file) {
+      if (file instanceof File) {
+        this.onloadimg(file).then(base64 => {
+          this.img = base64
+          setTimeout(() => {
+            this.DefaultOption.autoCrop = true
+            this.addsolide()
+          }, 10)
+        })
+      }
+      else {
+        throw new Error('不是一个有效的文件')
+      }
     }
   }
 };
