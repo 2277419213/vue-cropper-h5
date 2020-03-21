@@ -1,6 +1,7 @@
 <template>
   <div class="upbtn">
     <input
+      v-if="!hideInput"
       style="opacity: 0;"
       class="upbtn"
       type="file"
@@ -62,6 +63,10 @@ import { VueCropper } from "vue-cropper";
 export default {
   components: { VueCropper },
   props: {
+    hideInput: {
+      type: Boolean,
+      default: false
+    },
     option: {
       type: null,
       default: {}
