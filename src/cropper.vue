@@ -100,7 +100,6 @@ export default {
       }
     };
   },
-  watch: {},
   methods: {
     //选择照片
     async upphoto(e) {
@@ -297,8 +296,7 @@ export default {
         box.appendChild(BottomRightSide);
       }
     }
-  },
-  mounted() {}
+  }
 };
 </script>
 <style scoped>
