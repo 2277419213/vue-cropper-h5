@@ -68,8 +68,10 @@ export default {
       default: false
     },
     option: {
-      type: null,
-      default: {}
+      type: Object,
+      default() {
+        return {}
+      }
     }
   },
   data() {
