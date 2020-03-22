@@ -103,7 +103,7 @@ export default {
 ## Attr
 | 名称 | 说明 | 默认值 |
 | :--- | :--- | :--- |
-| hide-input | 隐藏默认的<input type="file" /> | false |
+| hide-input | 隐藏默认的`<input type="file" />` | false |
 | option | vue-cropper 的 Attr 配置（详见[Option及默认配置](#Option及默认配置)） | {} |
 
 ## Option及默认配置
