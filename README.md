@@ -14,13 +14,13 @@
 npm install vue-cropper-h5
 
 组件内使用
-import H5Cropper  from 'vue-cropper-h5' 
+import H5Cropper  from 'vue-cropper-h5'
 components: {
   H5Cropper,
 },
 
 main.js里面使用
-import H5Cropper from 'vue-cropper-h5' 
+import H5Cropper from 'vue-cropper-h5'
 
 Vue.use(H5Cropper)
 ```
@@ -236,10 +236,18 @@ export default {
   </tbody>
 </table>
 
-## 内置方法
-### @getbase64Data 获取裁剪完成的base64数据
-### @getblobData 获取裁剪完成的blob数据
-### @imgorigoinf 获取裁剪前照片的数据（File）
+## 事件
+| 事件名 | 说明 | 参数 |
+| :--- | :--- | :--- |
+| getbase64Data | 获取裁剪完成的base64数据 | base64 |
+| getblobData | 获取裁剪完成的blob数据 | blob |
+| imgorigoinf | 获取裁剪前照片的数据（使用 `hide-input` 后不会触发） | file |
+
+## 接口
+| 接口名 | 说明 | 参数 |
+| :--- | :--- | :--- |
+| loadFile | 允许用户自行传入文件(配合 `hide-input` 使用) | \<file\> |
+| loadBase64 | 允许用户自行传入 Base64 (配合 `hide-input` 使用) | \<base64\> |
 
 ## 版本
 
