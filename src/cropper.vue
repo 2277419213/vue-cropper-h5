@@ -319,7 +319,7 @@ export default {
         })
       }
       else {
-        throw new Error('不是一个有效的文件')
+        throw new Error('arguments file is not File')
       }
     }
   }
