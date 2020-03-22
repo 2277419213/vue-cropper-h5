@@ -306,7 +306,9 @@ export default {
      *    <h5-cropper hide-input ref="cropper">
      *
      * javascript:
-     *    this.$refs.cropper.loadFile(<File>)
+     *    this.$refs.cropper.loadFile()
+     *
+     * @param file
      */
     loadFile(file) {
       if (file instanceof File) {
@@ -319,8 +321,31 @@ export default {
         })
       }
       else {
-        throw new Error('arguments file is not File')
+        throw new Error('Arguments file is not File')
       }
+    },
+    /**
+     *
+     * @param base64
+     */
+    loadBase64(base64) {
+      if (typeof base64 !== 'string') {
+        throw new Error('Arguments base64 is not string')
+      }
+      const base = base64.split(',')
+      if (!/^data:image\/(.*?);base64$/.test(base[0])) {
+        throw new Error('Arguments base64 MIME is not image/*')
+      }
+
+      if (!/^[\/]?([\da-zA-Z]+[\/+]+)*[\da-zA-Z]+([+=]{1,2}|[\/])?$/.test(base[1])) {
+        throw new Error('Not standard base64')
+      }
+
+      this.img = base64
+      setTimeout(() => {
+        this.DefaultOption.autoCrop = true
+        this.addsolide()
+      }, 10)
     }
   }
 };
