@@ -100,7 +100,13 @@ export default {
 ###### GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs.com/package/vue-cropper-h5)查看效果演示
 ![](http://gy7.gdzcbw.cn/file/h5img/cropperdome.gif)
 
-## 配置文件及默认配置
+## Attr
+| 名称 | 说明 | 默认值 |
+| :--- | :--- | :--- |
+| hide-input | 隐藏默认的<input type="file" /> | false |
+| option | vue-cropper 的 Attr 配置（详见[Option及默认配置](#Option及默认配置)） | {} |
+
+## Option及默认配置
 
 关于配置详细信息，请查看源文档，感谢原作者xyxiao001大佬的[vue-cropper](https://github.com/xyxiao001/vue-cropper)
 <table style="text-align: center">
