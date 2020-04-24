@@ -5,7 +5,8 @@
 ## 地址
 
 ###### npm：[https://www.npmjs.com/package/vue-cropper-h5](https://www.npmjs.com/package/vue-cropper-h5)
-###### git：[https://github.com/2277419213/vue-cropper-h5](https://github.com/2277419213/vue-cropper-h5)
+###### github：[https://github.com/2277419213/vue-cropper-h5](https://github.com/2277419213/vue-cropper-h5)
+###### gitee：[https://gitee.com/JuLizhanzhan/vue-cropper-h5](https://gitee.com/JuLizhanzhan/vue-cropper-h5)
 
 ## 食用方式
 
@@ -50,7 +51,7 @@ export default {
     return {
       option: {}, //配置
       img:
-        "http://diy.qqjay.com/u/files/2012/0217/31241e407e76134dab98e0aa5e0ccabd.jpg"
+        "http://geren.yi-school.top/images/logo.png"
     };
   },
   methods: {
@@ -95,12 +96,13 @@ export default {
 </style>
 ```
 
-## 效果演示
+## 演示网站
 
-###### GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs.com/package/vue-cropper-h5)查看效果演示
-![](http://gy7.gdzcbw.cn/file/h5img/cropperdome.gif)
+###### 可以到[http://geren.yi-school.top/cropper](http://geren.yi-school.top/cropper/#/)查看效果演示
 
 ## Attr
+
+感谢Violet_Ice紫冰提供的更新
 | 名称 | 说明 | 默认值 |
 | :--- | :--- | :--- |
 | hide-input | 隐藏默认的`<input type="file" />` | false |
@@ -243,6 +245,7 @@ export default {
 </table>
 
 ## 事件
+
 | 事件名 | 说明 | 参数 |
 | :--- | :--- | :--- |
 | getbase64Data | 获取裁剪完成的base64数据 | base64 |
@@ -250,12 +253,18 @@ export default {
 | imgorigoinf | 获取裁剪前照片的数据（使用 `hide-input` 后不会触发） | file |
 
 ## 接口
+
+感谢Violet_Ice紫冰提供的更新base64用到了[正则校验](https://www.jianshu.com/p/86d59f6610c2)
 | 接口名 | 说明 | 参数 |
 | :--- | :--- | :--- |
 | loadFile | 允许用户自行传入文件(配合 `hide-input` 使用) | \<file\> |
 | loadBase64 | 允许用户自行传入 Base64 (配合 `hide-input` 使用) | \<base64\> |
 
 ## 版本
+
+### 1.1.8
+感谢下@[Violet_Ice紫冰](https://github.com/violetice)，一个很厉害的大佬，指出了我很多不规范的地方，还新加了两个接口（详见[接口](#接口)，也看了大佬指导的[样式篇规范](https://fly.layui.com/jie/29160/)收益颇丰，再次感谢大佬！   
+感谢下第二位大佬，我的朋友@[umbrella22](https://github.com/umbrella22)贡献了一套他的webpack配置，顺带帮我优化了一下，再次感谢大佬！
 
 ### 1.1.7
 部分码友反映称，原始图片太小会显示得很小，于是修改下默认渲染方式mode
@@ -267,7 +276,7 @@ export default {
 新增@getblobData方法,用于获取裁剪完成的照片blob数据
 
 ### 1.1.4
-感谢网友@PROMISE提供的建议，由于很多不在微信浏览器使用，会有浏览器原生的菜单栏挡住底部按钮，现增加Boolean(ceilbutton),可以自行选择按钮在底部还是顶部，默认底部
+感谢码友提供的建议，由于很多不在微信浏览器使用，会有浏览器原生的菜单栏挡住底部按钮，现增加Boolean(ceilbutton),可以自行选择按钮在底部还是顶部，默认底部
 
 ### 1.1.3
 同步更新原作者0.5版本vue-cropper,顺带限制了一下裁剪框最小大小

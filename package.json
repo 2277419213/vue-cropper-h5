@@ -1,36 +1,43 @@
 {
-  "name": "vue-cropper-h5",
-  "description": "h5的万能裁剪框，基于vue，样式类似微信，超好用！",
-  "version": "1.1.7",
-  "author": "居里栈栈",
-  "license": "MIT",
-  "private": false,
-  "main": "./dist/index.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
-  },
-  "dependencies": {
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "vue": "^2.5.11",
-    "vue-cropper": "^0.5.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-3": "^6.24.1",
-    "cross-env": "^5.0.5",
-    "css-loader": "^0.28.7",
-    "file-loader": "^1.1.4",
-    "vue-loader": "^13.0.5",
-    "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
-  }
+    "name": "vue-cropper-h5",
+    "description": "h5的万能裁剪框，基于vue，样式类似微信，超好用！",
+    "version": "1.1.8",
+    "author": "居里栈栈",
+    "license": "MIT",
+    "private": false,
+    "main": "./dist/index.js",
+    "scripts": {
+        "build": "cross-env NODE_ENV=production webpack --hide-modules"
+    },
+    "dependencies": {
+        "vue": "^2.6.11",
+        "vue-cropper": "^0.5.0"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.0.0",
+        "@babel/plugin-proposal-class-properties": "^7.0.0",
+        "@babel/plugin-proposal-json-strings": "^7.0.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@babel/plugin-syntax-import-meta": "^7.0.0",
+        "@babel/plugin-transform-runtime": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "@babel/runtime-corejs2": "^7.9.2",
+        "babel-loader": "^8.0.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "cross-env": "^7.0.2",
+        "css-loader": "^3.5.3",
+        "file-loader": "^6.0.0",
+        "terser-webpack-plugin": "^2.3.5",
+        "vue-loader": "^15.9.1",
+        "vue-template-compiler": "^2.6.11",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.10.3",
+        "webpackbar": "^4.0.0"
+    }
 }
