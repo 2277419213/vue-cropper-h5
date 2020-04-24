@@ -1,6 +1,7 @@
 <template>
   <div class="upbtn">
     <input
+      v-if="!hideInput"
       style="opacity: 0;"
       class="upbtn"
       type="file"
@@ -62,9 +63,15 @@ import { VueCropper } from "vue-cropper";
 export default {
   components: { VueCropper },
   props: {
+    hideInput: {
+      type: Boolean,
+      default: false
+    },
     option: {
-      type: null,
-      default: {}
+      type: Object,
+      default() {
+        return {}
+      }
     }
   },
   data() {
@@ -95,7 +102,6 @@ export default {
       }
     };
   },
-  watch: {},
   methods: {
     //选择照片
     async upphoto(e) {
@@ -291,19 +297,63 @@ export default {
         box.appendChild(RightBottomSide);
         box.appendChild(BottomRightSide);
       }
+    },
+
+    // Violet_ice紫冰 <violetice@aliyun.com>
+    /**
+     * 载入文件
+     * template:
+     *    <h5-cropper hide-input ref="cropper">
+     *
+     * javascript:
+     *    this.$refs.cropper.loadFile()
+     *
+     * @param file
+     */
+    loadFile(file) {
+      if (file instanceof File) {
+        this.onloadimg(file).then(base64 => {
+          this.img = base64
+          setTimeout(() => {
+            this.DefaultOption.autoCrop = true
+            this.addsolide()
+          }, 10)
+        })
+      }
+      else {
+        throw new Error('Arguments file is not File')
+      }
+    },
+    /**
+     *
+     * @param base64
+     */
+    loadBase64(base64) {
+      if (typeof base64 !== 'string') {
+        throw new Error('Arguments base64 is not string')
+      }
+      const base = base64.split(',')
+      if (!/^data:image\/(.*?);base64$/.test(base[0])) {
+        throw new Error('Arguments base64 MIME is not image/*')
+      }
+
+      if (!/^[\/]?([\da-zA-Z]+[\/+]+)*[\da-zA-Z]+([+=]{1,2}|[\/])?$/.test(base[1])) {
+        throw new Error('Not standard base64')
+      }
+
+      this.img = base64
+      setTimeout(() => {
+        this.DefaultOption.autoCrop = true
+        this.addsolide()
+      }, 10)
     }
-  },
-  mounted() {}
+  }
 };
 </script>
 <style scoped>
 .upbtn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 0;
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
 }
 .bg {
   position: fixed;

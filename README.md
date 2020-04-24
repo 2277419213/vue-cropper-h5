@@ -14,13 +14,13 @@
 npm install vue-cropper-h5
 
 组件内使用
-import H5Cropper  from 'vue-cropper-h5' 
+import H5Cropper  from 'vue-cropper-h5'
 components: {
   H5Cropper,
 },
 
 main.js里面使用
-import H5Cropper from 'vue-cropper-h5' 
+import H5Cropper from 'vue-cropper-h5'
 
 Vue.use(H5Cropper)
 ```
@@ -100,7 +100,13 @@ export default {
 ###### GitHub有可能出现gif无法显示的问题，可以到[npm](https://www.npmjs.com/package/vue-cropper-h5)查看效果演示
 ![](http://gy7.gdzcbw.cn/file/h5img/cropperdome.gif)
 
-## 配置文件及默认配置
+## Attr
+| 名称 | 说明 | 默认值 |
+| :--- | :--- | :--- |
+| hide-input | 隐藏默认的`<input type="file" />` | false |
+| option | vue-cropper 的 Attr 配置（详见[Option及默认配置](#Option及默认配置)） | {} |
+
+## Option及默认配置
 
 关于配置详细信息，请查看源文档，感谢原作者xyxiao001大佬的[vue-cropper](https://github.com/xyxiao001/vue-cropper)
 <table style="text-align: center">
@@ -236,10 +242,18 @@ export default {
   </tbody>
 </table>
 
-## 内置方法
-### @getbase64Data 获取裁剪完成的base64数据
-### @getblobData 获取裁剪完成的blob数据
-### @imgorigoinf 获取裁剪前照片的数据（File）
+## 事件
+| 事件名 | 说明 | 参数 |
+| :--- | :--- | :--- |
+| getbase64Data | 获取裁剪完成的base64数据 | base64 |
+| getblobData | 获取裁剪完成的blob数据 | blob |
+| imgorigoinf | 获取裁剪前照片的数据（使用 `hide-input` 后不会触发） | file |
+
+## 接口
+| 接口名 | 说明 | 参数 |
+| :--- | :--- | :--- |
+| loadFile | 允许用户自行传入文件(配合 `hide-input` 使用) | \<file\> |
+| loadBase64 | 允许用户自行传入 Base64 (配合 `hide-input` 使用) | \<base64\> |
 
 ## 版本
 
