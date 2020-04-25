@@ -13,7 +13,7 @@
 
 ## 食用方式
 
-#####npm or yarn or cnpm
+##### npm or yarn or cnpm
 
 ```
 安装
@@ -31,7 +31,7 @@ import H5Cropper from 'vue-cropper-h5'
 Vue.use(H5Cropper)
 ```
 
-#####cdn(版本详见(jsdelivr)[https://www.jsdelivr.com/package/npm/vue-cropper-h5])
+##### cdn(版本详见[jsdelivr](https://www.jsdelivr.com/package/npm/vue-cropper-h5))
 
 ```
 引入
