@@ -5,14 +5,19 @@
 ## 地址
 
 ###### npm：[https://www.npmjs.com/package/vue-cropper-h5](https://www.npmjs.com/package/vue-cropper-h5)
+###### yarn：[https://classic.yarnpkg.com/en/package/vue-cropper-h5](https://classic.yarnpkg.com/en/package/vue-cropper-h5)
+###### cnpm：[https://developer.aliyun.com/mirror/npm/package/vue-cropper-h5](https://developer.aliyun.com/mirror/npm/package/vue-cropper-h5)
+###### jsdelivr(cdn)：[https://www.jsdelivr.com/package/npm/vue-cropper-h5](https://www.jsdelivr.com/package/npm/vue-cropper-h5)
 ###### github：[https://github.com/2277419213/vue-cropper-h5](https://github.com/2277419213/vue-cropper-h5)
 ###### gitee：[https://gitee.com/JuLizhanzhan/vue-cropper-h5](https://gitee.com/JuLizhanzhan/vue-cropper-h5)
 
 ## 食用方式
 
+#####npm or yarn or cnpm
+
 ```
 安装
-npm install vue-cropper-h5
+npm install vue-cropper-h5 or yarn add vue-cropper-h5 or cnpm install vue-cropper-h5
 
 组件内使用
 import H5Cropper  from 'vue-cropper-h5'
@@ -24,6 +29,23 @@ main.js里面使用
 import H5Cropper from 'vue-cropper-h5'
 
 Vue.use(H5Cropper)
+```
+
+#####cdn(版本详见(jsdelivr)[https://www.jsdelivr.com/package/npm/vue-cropper-h5])
+
+```
+引入
+<script src="https://cdn.jsdelivr.net/npm/vue-cropper-h5@1.1.9/dist/index.min.js"></script>
+
+使用
+<H5-cropper></H5-cropper>
+
+事件
+| getbase64 | 获取裁剪完成的base64数据 | 
+| getblob | 获取裁剪完成的blob数据 | 
+
+示例
+[CDN_sample.html](https://github.com/2277419213/vue-cropper-h5/blob/master/CDN_sample.html)
 ```
 
 ## Dome
@@ -249,7 +271,9 @@ export default {
 | 事件名 | 说明 | 参数 |
 | :--- | :--- | :--- |
 | getbase64Data | 获取裁剪完成的base64数据 | base64 |
+| getbase64 | 获取裁剪完成的base64数据 | 同上，主要给cdn引入的码友 |
 | getblobData | 获取裁剪完成的blob数据 | blob |
+| getblob | 获取裁剪完成的blob数据 | 同上，主要给cdn引入的码友 |
 | imgorigoinf | 获取裁剪前照片的数据（使用 `hide-input` 后不会触发） | file |
 
 ## 接口
@@ -261,6 +285,9 @@ export default {
 | loadBase64 | 允许用户自行传入 Base64 (配合 `hide-input` 使用) | \<base64\> |
 
 ## 版本
+
+### 1.1.9
+更新了一下cdn引入时的事件，因为之前事件getbase64Data和getblobData会在cdn引入的时候出现无法响应的情况，具体原因不明，如有大佬知道麻烦告知一下，谢谢！于是在不影响旧事件的前提下，新增getbase64和getblob方法，方便各位cdn引入的朋友调用，感谢@[awen1988](https://github.com/awen1988),提出的问题及解决方案！
 
 ### 1.1.8
 感谢下@[Violet_Ice紫冰](https://github.com/violetice)，一个很厉害的大佬，指出了我很多不规范的地方，还新加了两个接口（详见[接口](#接口)，也看了大佬指导的[样式篇规范](https://fly.layui.com/jie/29160/)收益颇丰，再次感谢大佬！   

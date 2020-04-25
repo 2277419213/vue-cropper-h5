@@ -1,7 +1,7 @@
 {
     "name": "vue-cropper-h5",
     "description": "h5的万能裁剪框，基于vue，样式类似微信，超好用！",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "author": "居里栈栈",
     "license": "MIT",
     "private": false,
@@ -10,8 +10,7 @@
         "build": "cross-env NODE_ENV=production webpack --hide-modules"
     },
     "dependencies": {
-        "vue": "^2.6.11",
-        "vue-cropper": "^0.5.0"
+        "vue": "^2.6.11"
     },
     "browserslist": [
         "> 1%",

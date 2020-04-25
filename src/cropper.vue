@@ -131,12 +131,14 @@ export default {
       // 获取截图的base64数据
       this.$refs.cropper.getCropData(data => {
         this.$emit("getbase64Data", data);
+        this.$emit("getbase64", data);
         this.img = "";
         this.DefaultOption.autoCrop = false;
       });
       // 获取截图的blob数据
       this.$refs.cropper.getCropBlob(data => {
         this.$emit("getblobData", data);
+        this.$emit("getblob", data);
         this.img = "";
         this.DefaultOption.autoCrop = false;
       });
@@ -352,8 +354,8 @@ export default {
 </script>
 <style scoped>
 .upbtn {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 .bg {
   position: fixed;
