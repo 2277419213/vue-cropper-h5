@@ -54,7 +54,7 @@ Vue.use(H5Cropper)
 ### cdn使用(版本详见[jsdelivr](https://www.jsdelivr.com/package/npm/vue-cropper-h5))
 
 #### 示例
-简单示例：[simple](./example/cdn/simple.html)
+简单示例：[simple](./example/cdn/simple.html)  
 高级示例(配合各种组件库的Upload使用)：[hide-input](./example/cdn/hide-input.html)
 ```
 引入
@@ -301,7 +301,7 @@ export default {
 
 ## 接口
 
-感谢Violet_Ice紫冰提供的更新， loadBase64 使用了正则校验：[Base64 格式校验正则](https://learnku.com/articles/42295)
+感谢Violet_Ice紫冰提供的更新，loadBase64 使用了正则校验：[Base64 格式校验正则](https://learnku.com/articles/42295)
 | 接口名 | 说明 | 参数 |
 | :--- | :--- | :--- |
 | loadFile | 允许用户自行传入文件(配合 `hide-input` 使用) | \<file\> |
