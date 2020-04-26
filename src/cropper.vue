@@ -10,10 +10,7 @@
       ref="headinput"
     />
     <div class="bg" v-if="img!=''">
-      <div
-        class="btndiv"
-        v-if="config.ceilbutton"
-      >
+      <div class="btndiv" v-if="config.ceilbutton">
         <div class="btn1" @click="img=''">取消</div>
         <div class="img" @click="rotating"></div>
         <div class="btn" @click="tailoring">确定</div>
@@ -47,10 +44,7 @@
           @imgMoving="moving($event)"
         ></vueCropper>
       </div>
-      <div
-        class="btndiv"
-        v-if="!config.ceilbutton"
-      >
+      <div class="btndiv" v-if="!config.ceilbutton">
         <div class="btn1" @click="img=''">取消</div>
         <div class="img" @click="rotating"></div>
         <div class="btn" @click="tailoring">确定</div>
@@ -61,7 +55,7 @@
 <script>
 import { VueCropper } from "vue-cropper";
 export default {
-  name: 'H5Cropper',
+  name: "H5Cropper",
   components: { VueCropper },
   props: {
     hideInput: {
@@ -71,7 +65,7 @@ export default {
     option: {
       type: Object,
       default() {
-        return {}
+        return {};
       }
     }
   },
@@ -81,17 +75,36 @@ export default {
       config: {}
     };
   },
-  created(){
-  	// Event getFile 需要明确 MIME 类型
-  	delete this.option.autoCrop // TODO: 不开放权限
-  	if(
-  		typeof this.option.outputType === 'string' &&
-  		['jpeg', 'png', 'webp'].indexOf(this.option.outputType) === -1
-	){
-  		throw new Error('Option.outputType is not [jpeg, png, webp]')
-  	}
+  watch: {
+    option: {
+      handler: function() {
+        //do something
+        delete this.option.autoCrop; // TODO: 不开放权限
+        if (
+          typeof this.option.outputType === "string" &&
+          ["jpeg", "png", "webp"].indexOf(this.option.outputType) === -1
+        ) {
+          console.warn("Option.outputType is not [jpeg, png, webp]");
+          delete this.option.outputType; // TODO: 改回默认属性不影响调用
+        }
+        this.config = Object.assign(this.config, this.option);
+      },
+      deep: true
+    }
+  },
+  created() {
+    // Event getFile 需要明确 MIME 类型
+    delete this.option.autoCrop; // TODO: 不开放权限
+    if (
+      typeof this.option.outputType === "string" &&
+      ["jpeg", "png", "webp"].indexOf(this.option.outputType) === -1
+    ) {
+      console.warn("Option.outputType is not [jpeg, png, webp]");
+      delete this.option.outputType; // TODO: 改回默认属性不影响调用
+    }
 
-  	this.config = Object.assign({
+    this.config = Object.assign(
+      {
         ceilbutton: false, //顶部按钮，默认底部
         outputSize: 1, //裁剪生成图片的质量
         outputType: "png", //裁剪生成图片的格式,默认png
@@ -113,7 +126,9 @@ export default {
         maxImgSize: 2000, //限制图片最大宽度和高度
         enlarge: 1, //图片根据截图框输出比例倍数
         mode: "100%" //图片默认渲染方式
-      }, this.option)
+      },
+      this.option
+    );
   },
   methods: {
     //选择照片
@@ -155,12 +170,14 @@ export default {
 
         // Blob 转 File
         const suffix = {
-        	jpeg: 'jpg',
-        	png: 'png',
-        	webp: 'webp'
-        }[this.config.outputType]
-        const time = (new Date).getTime()
-        const file = new File([data], `${time}.${suffix}`, {type: `image/${this.config.outputType}`})
+          jpeg: "jpg",
+          png: "png",
+          webp: "webp"
+        }[this.config.outputType];
+        const time = new Date().getTime();
+        const file = new File([data], `${time}.${suffix}`, {
+          type: `image/${this.config.outputType}`
+        });
 
         this.$emit("getFile", file);
         this.$emit("get-file", file);
@@ -341,15 +358,14 @@ export default {
     loadFile(file) {
       if (file instanceof File) {
         this.onloadimg(file).then(base64 => {
-          this.img = base64
+          this.img = base64;
           setTimeout(() => {
-            this.config.autoCrop = true
-            this.addsolide()
-          }, 10)
-        })
-      }
-      else {
-        throw new Error('Arguments file is not File')
+            this.config.autoCrop = true;
+            this.addsolide();
+          }, 10);
+        });
+      } else {
+        throw new Error("Arguments file is not File");
       }
     },
     /**
@@ -357,24 +373,26 @@ export default {
      * @param base64
      */
     loadBase64(base64) {
-      if (typeof base64 !== 'string') {
-        throw new Error('Arguments base64 is not string')
+      if (typeof base64 !== "string") {
+        throw new Error("Arguments base64 is not string");
       }
-      const base = base64.split(',')
+      const base = base64.split(",");
       if (!/^data:image\/(.*?);base64$/.test(base[0])) {
-        throw new Error('Arguments base64 MIME is not image/*')
+        throw new Error("Arguments base64 MIME is not image/*");
       }
 
       // Base64 Regex @see https://learnku.com/articles/42295
-      if (!/^[\/]?([\da-zA-Z]+[\/+]+)*[\da-zA-Z]+([+=]{1,2}|[\/])?$/.test(base[1])) {
-        throw new Error('Not standard base64')
+      if (
+        !/^[\/]?([\da-zA-Z]+[\/+]+)*[\da-zA-Z]+([+=]{1,2}|[\/])?$/.test(base[1])
+      ) {
+        throw new Error("Not standard base64");
       }
 
-      this.img = base64
+      this.img = base64;
       setTimeout(() => {
-        this.config.autoCrop = true
-        this.addsolide()
-      }, 10)
+        this.config.autoCrop = true;
+        this.addsolide();
+      }, 10);
     }
   }
 };

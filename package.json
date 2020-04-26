@@ -1,7 +1,7 @@
 {
     "name": "vue-cropper-h5",
     "description": "h5的万能裁剪框，基于vue，样式类似微信，超好用！",
-    "version": "1.1.9",
+    "version": "1.2.0",
     "author": "居里栈栈",
     "license": "MIT",
     "private": false,
@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "vue": "^2.6.11",
-        "vue-cropper":"git+https://e.coding.net/violetice/vue-cropper.git#master"
+        "vue-cropper": "git+https://e.coding.net/violetice/vue-cropper.git#master"
     },
     "browserslist": [
         "> 1%",

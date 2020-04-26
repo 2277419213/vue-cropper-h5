@@ -76,7 +76,7 @@ Vue.use(H5Cropper)
   <div class="dome">
     <div class="cropper">
       <img :src="img" class="img" />
-      <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 2.14新增一个获取getblobData的方法,有需要的自取 -->
+      <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 2.14新增一个获取getblobData的方法 -->
       <h5-cropper :option="option" @getbase64Data="getbase64Data" @getblobData="getblobData" @getFile="getFile"></h5-cropper>
     </div>
     <div class="info">
@@ -308,6 +308,9 @@ export default {
 | loadBase64 | 允许用户自行传入 Base64 (配合 `hide-input` 使用) | \<base64\> |
 
 ## 版本
+
+### 1.2.0
+新增getFile和get-file获取裁剪完成的 File 数据，感谢@[Violet_Ice紫冰](https://github.com/violetice)
 
 ### 1.1.9
 更新了一下cdn引入时的事件，因为之前事件getbase64Data和getblobData会在cdn引入的时候出现无法响应的情况，具体原因不明，如有大佬知道麻烦告知一下，谢谢！于是在不影响旧事件的前提下，新增getbase64和getblob方法，方便各位cdn引入的朋友调用，感谢@[awen1988](https://github.com/awen1988),提出的问题及解决方案！
