@@ -50,7 +50,7 @@
         <div class="cropper">
             <img :src="img" class="img" />
             <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 -->
-            <h5-cropper @getbase64="getbase64Data"></h5-cropper>
+            <h5-cropper @getbase64="getbase64Data" @getblob="getBlob" @get-file="getFile"></h5-cropper>
         </div>
         <div class="info">
             <div>作者：居里栈栈</div>
@@ -68,8 +68,13 @@
             },
             methods: {
                 getbase64Data(data) {
-                    console.log('Base64', data)
                     this.img = data;
+                },
+                getBlob(blob){
+                    console.log(blob)
+                },
+                getFile(file){
+                    console.log(file)
                 }
             }
         })

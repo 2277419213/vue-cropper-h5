@@ -7,45 +7,66 @@
 ###### npm：[https://www.npmjs.com/package/vue-cropper-h5](https://www.npmjs.com/package/vue-cropper-h5)
 ###### yarn：[https://classic.yarnpkg.com/en/package/vue-cropper-h5](https://classic.yarnpkg.com/en/package/vue-cropper-h5)
 ###### cnpm：[https://developer.aliyun.com/mirror/npm/package/vue-cropper-h5](https://developer.aliyun.com/mirror/npm/package/vue-cropper-h5)
+
 ###### jsdelivr(cdn)：[https://www.jsdelivr.com/package/npm/vue-cropper-h5](https://www.jsdelivr.com/package/npm/vue-cropper-h5)
+###### unpkg(cdn)：[https://unpkg.com/vue-cropper-h5@1.1.9/dist/index.js](https://unpkg.com/vue-cropper-h5@1.1.9/dist/index.js)
+
 ###### github：[https://github.com/2277419213/vue-cropper-h5](https://github.com/2277419213/vue-cropper-h5)
 ###### gitee：[https://gitee.com/JuLizhanzhan/vue-cropper-h5](https://gitee.com/JuLizhanzhan/vue-cropper-h5)
 
 ## 食用方式
 
-##### npm or yarn or cnpm
+### 安装
+```shell
+npm install vue-cropper-h5
 
+or
+
+yarn add vue-cropper-h5
+
+or
+
+cnpm install vue-cropper-h5
 ```
-安装
-npm install vue-cropper-h5 or yarn add vue-cropper-h5 or cnpm install vue-cropper-h5
 
-组件内使用
+### 普通使用
+```
+<template>
+  <div id="app">
+    <h5-cropper></h5-cropper>
+  </div>
+</template>
+
+<script>
+// 局部引入
 import H5Cropper  from 'vue-cropper-h5'
-components: {
-  H5Cropper,
-},
+export default {
+  name: 'App',
+  components: { H5Cropper }
+};
 
-main.js里面使用
+// 全局引入
 import H5Cropper from 'vue-cropper-h5'
-
 Vue.use(H5Cropper)
+</script>
 ```
 
-##### cdn(版本详见[jsdelivr](https://www.jsdelivr.com/package/npm/vue-cropper-h5))
+### cdn使用(版本详见[jsdelivr](https://www.jsdelivr.com/package/npm/vue-cropper-h5))
 
+#### 示例
+简单示例：[simple](./example/cdn/simple.html)
+高级示例(配合各种组件库的Upload使用)：[hide-input](./example/cdn/hide-input.html)
 ```
 引入
 <script src="https://cdn.jsdelivr.net/npm/vue-cropper-h5@1.1.9/dist/index.min.js"></script>
 
 使用
-<H5-cropper></H5-cropper>
+<h5-cropper></h5-cropper>
 
 事件
-| getbase64 | 获取裁剪完成的base64数据 | 
-| getblob | 获取裁剪完成的blob数据 | 
-
-示例
-[CDN_sample.html](https://github.com/2277419213/vue-cropper-h5/blob/master/CDN_sample.html)
+| getbase64 | 获取裁剪完成的 Base64 数据 |
+| getblob | 获取裁剪完成的 Blob 数据 |
+| get-file | 获取裁剪完成的 File 数据 |
 ```
 
 ## Dome
@@ -56,7 +77,7 @@ Vue.use(H5Cropper)
     <div class="cropper">
       <img :src="img" class="img" />
       <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 2.14新增一个获取getblobData的方法,有需要的自取 -->
-      <H5Cropper :option="option" @getbase64Data="getbase64Data" @getblobData="getblobData"></H5Cropper>
+      <h5-cropper :option="option" @getbase64Data="getbase64Data" @getblobData="getblobData" @getFile="getFile"></h5-cropper>
     </div>
     <div class="info">
       <div>作者：居里栈栈</div>
@@ -270,15 +291,17 @@ export default {
 
 | 事件名 | 说明 | 参数 |
 | :--- | :--- | :--- |
-| getbase64Data | 获取裁剪完成的base64数据 | base64 |
-| getbase64 | 获取裁剪完成的base64数据 | 同上，主要给cdn引入的码友 |
-| getblobData | 获取裁剪完成的blob数据 | blob |
-| getblob | 获取裁剪完成的blob数据 | 同上，主要给cdn引入的码友 |
+| getbase64Data | 获取裁剪完成的 Base64 数据 | Base64 |
+| getbase64 | 同上，兼容 CDN 使用 | base64 |
+| getblobData | 获取裁剪完成的 Blob 数据 | Blob |
+| getblob | 同上，兼容 CDN 使用 | Blob |
+| getFile | 获取裁剪完成的 File 数据 | File |
+| get-file | 同上，兼容 CDN 使用 | File |
 | imgorigoinf | 获取裁剪前照片的数据（使用 `hide-input` 后不会触发） | file |
 
 ## 接口
 
-感谢Violet_Ice紫冰提供的更新base64用到了[正则校验](https://www.jianshu.com/p/86d59f6610c2)
+感谢Violet_Ice紫冰提供的更新， loadBase64 使用了正则校验：[Base64 格式校验正则](https://learnku.com/articles/42295)
 | 接口名 | 说明 | 参数 |
 | :--- | :--- | :--- |
 | loadFile | 允许用户自行传入文件(配合 `hide-input` 使用) | \<file\> |
