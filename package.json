@@ -10,7 +10,8 @@
         "build": "cross-env NODE_ENV=production webpack --hide-modules"
     },
     "dependencies": {
-        "vue": "^2.6.11"
+        "vue": "^2.6.11",
+        "vue-cropper":"git+https://e.coding.net/violetice/vue-cropper.git#master"
     },
     "browserslist": [
         "> 1%",

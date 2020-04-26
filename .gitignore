@@ -1,7 +1,6 @@
 .DS_Store
 # mark一下，你要排除某个文件夹，但是不排除文件夹里面的某个文件夹，一定要在排除的文件夹加*，否则不生效
-node_modules/*
-!node_modules/vue-cropper/
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -12,6 +11,7 @@ selenium-debug.log
 # Editor directories and files
 .idea
 .vscode
+.vs
 *.suo
 *.ntvs*
 *.njsproj
