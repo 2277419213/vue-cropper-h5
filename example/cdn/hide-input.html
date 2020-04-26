@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>cdn-cropper-simple</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+    <script src="../../dist/index.js"></script>
+    <style>
+        .dome {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 22px;
+        }
+        
+        .cropper {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            /* 切记position: relative一点要有 */
+            position: relative;
+            border-radius: 80px;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+        
+        .info {
+            font-size: 18px;
+            height: 40px;
+            line-height: 40px;
+            margin-left: 30px;
+            flex: 1;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dome" id="app">
+        <!-- <img :src="require('@/assets/logo.png')"></img> -->
+        <input type="file" name="img" @change="chnage">
+        <div class="cropper">
+            <img :src="img" class="img" />
+            <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 -->
+            <h5-cropper ref="cropper" hide-input @getbase64="getbase64Data" @get-file="getFile"></h5-cropper>
+        </div>
+        <div class="info">
+            <div>作者：居里栈栈</div>
+            <div>Wechat：812936565</div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    img: "http://geren.yi-school.top/images/logo.png"
+                }
+            },
+            methods: {
+                chnage({target}){
+                    this.$refs.cropper.loadFile(target.files[0])
+                    target.value = ''
+                },
+                getbase64Data(data) {
+                    this.img = data
+                },
+                getFile(file) {
+                    console.log(file)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

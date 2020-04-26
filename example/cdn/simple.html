@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>cdn-cropper-dome</title>
+    <title>cdn-cropper-simple</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+    <script src="../../dist/index.js"></script>
     <style>
         .dome {
             display: flex;
@@ -49,7 +50,7 @@
         <div class="cropper">
             <img :src="img" class="img" />
             <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 -->
-            <H5-cropper @getbase64="getbase64Data"></H5-cropper>
+            <h5-cropper @getbase64="getbase64Data"></h5-cropper>
         </div>
         <div class="info">
             <div>作者：居里栈栈</div>
@@ -57,7 +58,6 @@
         </div>
     </div>
 
-    <script src="./dist/index.js"></script>
     <script>
         new Vue({
             el: '#app',
@@ -68,13 +68,11 @@
             },
             methods: {
                 getbase64Data(data) {
+                    console.log('Base64', data)
                     this.img = data;
                 }
             }
         })
     </script>
-
-
 </body>
-
 </html>
