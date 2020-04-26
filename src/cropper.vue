@@ -12,7 +12,7 @@
     <div class="bg" v-if="img!=''">
       <div
         class="btndiv"
-        v-if="(option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton"
+        v-if="config.ceilbutton"
       >
         <div class="btn1" @click="img=''">取消</div>
         <div class="img" @click="rotating"></div>
@@ -23,33 +23,33 @@
           id="cropper"
           ref="cropper"
           :img="img"
-          :outputSize="(option.outputSize==undefined||JSON.stringify(option.outputSize)=='')?DefaultOption.outputSize:option.outputSize"
-          :outputType="(option.outputType==undefined||JSON.stringify(option.outputType)=='')?DefaultOption.outputType:option.outputType"
-          :info="(option.info==undefined||JSON.stringify(option.info)=='')?DefaultOption.info:option.info"
-          :canScale="(option.canScale==undefined||JSON.stringify(option.canScale)=='')?DefaultOption.canScale:option.canScale"
-          :autoCrop="DefaultOption.autoCrop"
-          :autoCropWidth="(option.autoCropWidth==undefined||JSON.stringify(option.autoCropWidth)=='')?DefaultOption.autoCropWidth:option.autoCropWidth"
-          :autoCropHeight="(option.autoCropHeight==undefined||JSON.stringify(option.autoCropHeight)=='')?DefaultOption.autoCropHeight:option.autoCropHeight"
-          :fixed="(option.fixed==undefined||JSON.stringify(option.fixed)=='')?DefaultOption.fixed:option.fixed"
-          :fixedNumber="(option.fixedNumber==undefined||JSON.stringify(option.fixedNumber)=='')?DefaultOption.fixedNumber:option.fixedNumber"
-          :full="(option.full==undefined||JSON.stringify(option.full)=='')?DefaultOption.full:option.full"
-          :fixedBox="(option.fixedBox==undefined||JSON.stringify(option.fixedBox)=='')?DefaultOption.fixedBox:option.fixedBox"
-          :canMove="(option.canMove==undefined||JSON.stringify(option.canMove)=='')?DefaultOption.canMove:option.canMove"
-          :canMoveBox="(option.canMoveBox==undefined||JSON.stringify(option.canMoveBox)=='')?DefaultOption.canMoveBox:option.canMoveBox"
-          :original="(option.original==undefined||JSON.stringify(option.original)=='')?DefaultOption.original:option.original"
-          :centerBox="(option.centerBox==undefined||JSON.stringify(option.centerBox)=='')?DefaultOption.centerBox:option.centerBox"
-          :high="(option.high==undefined||JSON.stringify(option.high)=='')?DefaultOption.high:option.high"
-          :infoTrue="(option.infoTrue==undefined||JSON.stringify(option.infoTrue)=='')?DefaultOption.infoTrue:option.infoTrue"
-          :maxImgSize="(option.maxImgSize==undefined||JSON.stringify(option.maxImgSize)=='')?DefaultOption.maxImgSize:option.maxImgSize"
-          :enlarge="(option.enlarge==undefined||JSON.stringify(option.enlarge)=='')?DefaultOption.enlarge:option.enlarge"
-          :mode="(option.mode==undefined||JSON.stringify(option.mode)=='')?DefaultOption.mode:option.mode"
+          :outputSize="config.outputSize"
+          :outputType="config.outputType"
+          :info="config.info"
+          :canScale="config.canScale"
+          :autoCrop="config.autoCrop"
+          :autoCropWidth="config.autoCropWidth"
+          :autoCropHeight="config.autoCropHeight"
+          :fixed="config.fixed"
+          :fixedNumber="config.fixedNumber"
+          :full="config.full"
+          :fixedBox="config.fixedBox"
+          :canMove="config.canMove"
+          :canMoveBox="config.canMoveBox"
+          :original="config.original"
+          :centerBox="config.centerBox"
+          :high="config.high"
+          :infoTrue="config.infoTrue"
+          :maxImgSize="config.maxImgSize"
+          :enlarge="config.enlarge"
+          :mode="config.mode"
           @cropMoving="moving($event)"
           @imgMoving="moving($event)"
         ></vueCropper>
       </div>
       <div
         class="btndiv"
-        v-if="!((option.ceilbutton==undefined||JSON.stringify(option.ceilbutton)=='')?DefaultOption.ceilbutton:option.ceilbutton)"
+        v-if="!config.ceilbutton"
       >
         <div class="btn1" @click="img=''">取消</div>
         <div class="img" @click="rotating"></div>
@@ -61,6 +61,7 @@
 <script>
 import { VueCropper } from "vue-cropper";
 export default {
+  name: 'H5Cropper',
   components: { VueCropper },
   props: {
     hideInput: {
@@ -77,7 +78,20 @@ export default {
   data() {
     return {
       img: "",
-      DefaultOption: {
+      config: {}
+    };
+  },
+  created(){
+  	// Event getFile 需要明确 MIME 类型
+  	delete this.option.autoCrop // TODO: 不开放权限
+  	if(
+  		typeof this.option.outputType === 'string' &&
+  		['jpeg', 'png', 'webp'].indexOf(this.option.outputType) === -1
+	){
+  		throw new Error('Option.outputType is not [jpeg, png, webp]')
+  	}
+
+  	this.config = Object.assign({
         ceilbutton: false, //顶部按钮，默认底部
         outputSize: 1, //裁剪生成图片的质量
         outputType: "png", //裁剪生成图片的格式,默认png
@@ -99,8 +113,7 @@ export default {
         maxImgSize: 2000, //限制图片最大宽度和高度
         enlarge: 1, //图片根据截图框输出比例倍数
         mode: "100%" //图片默认渲染方式
-      }
-    };
+      }, this.option)
   },
   methods: {
     //选择照片
@@ -110,7 +123,7 @@ export default {
       if (photourl != undefined) {
         this.$emit("imgorigoinf", photourl);
         this.img = await this.onloadimg(photourl);
-        this.DefaultOption.autoCrop = true;
+        this.config.autoCrop = true;
         setTimeout(() => {
           this.addsolide();
         }, 10);
@@ -133,14 +146,27 @@ export default {
         this.$emit("getbase64Data", data);
         this.$emit("getbase64", data);
         this.img = "";
-        this.DefaultOption.autoCrop = false;
+        this.config.autoCrop = false;
       });
       // 获取截图的blob数据
       this.$refs.cropper.getCropBlob(data => {
         this.$emit("getblobData", data);
         this.$emit("getblob", data);
+
+        // Blob 转 File
+        const suffix = {
+        	jpeg: 'jpg',
+        	png: 'png',
+        	webp: 'webp'
+        }[this.config.outputType]
+        const time = (new Date).getTime()
+        const file = new File([data], `${time}.${suffix}`, {type: `image/${this.config.outputType}`})
+
+        this.$emit("getFile", file);
+        this.$emit("get-file", file);
+
         this.img = "";
-        this.DefaultOption.autoCrop = false;
+        this.config.autoCrop = false;
       });
     },
     //旋转照片
@@ -317,7 +343,7 @@ export default {
         this.onloadimg(file).then(base64 => {
           this.img = base64
           setTimeout(() => {
-            this.DefaultOption.autoCrop = true
+            this.config.autoCrop = true
             this.addsolide()
           }, 10)
         })
@@ -339,13 +365,14 @@ export default {
         throw new Error('Arguments base64 MIME is not image/*')
       }
 
+      // Base64 Regex @see https://learnku.com/articles/42295
       if (!/^[\/]?([\da-zA-Z]+[\/+]+)*[\da-zA-Z]+([+=]{1,2}|[\/])?$/.test(base[1])) {
         throw new Error('Not standard base64')
       }
 
       this.img = base64
       setTimeout(() => {
-        this.DefaultOption.autoCrop = true
+        this.config.autoCrop = true
         this.addsolide()
       }, 10)
     }
