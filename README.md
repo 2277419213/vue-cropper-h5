@@ -309,6 +309,10 @@ export default {
 
 ## 版本
 
+### 1.2.1
+因为之前为了适配h5，我对原作者的vue-cropper有一点小修改，后面是放在coding上，然后coding改了路由规则，于是npm下载就报错了，感谢发现的热心码友告诉我，我得以即时更新，现在仓库挪到了github上，可能有点慢
+请耐心等待，其次1.2.1更新了原作者修复的bug，关于谷歌81内核和ios13.5的图片旋转的，我也一并同步了，有兴趣的朋友可以去看看https://www.chromestatus.com/feature/6313474512650240
+
 ### 1.2.0
 新增getFile和get-file获取裁剪完成的 File 数据，感谢@[Violet_Ice紫冰](https://github.com/violetice)
 
