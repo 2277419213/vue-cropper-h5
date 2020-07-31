@@ -413,6 +413,7 @@ export default {
 }
 .btn {
   height: 8vw;
+  padding: 0;
   line-height: 8vw;
   font-size: 4vw;
   width: 16vw;
