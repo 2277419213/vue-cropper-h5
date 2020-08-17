@@ -141,151 +141,47 @@ export default {
 
 ## 演示网站
 
-###### 可以到[http://geren.yi-school.top/cropper](http://geren.yi-school.top/cropper/#/)查看效果演示
+###### 可以到[http://www.yi-school.top/cropper](http://www.yi-school.top/cropper/#/)查看效果演示
 
 ## Attr
 
 感谢Violet_Ice紫冰提供的更新
-| 名称 | 说明 | 默认值 |
-| :--- | :--- | :--- |
-| hide-input | 隐藏默认的`<input type="file" />` | false |
-| option | vue-cropper 的 Attr 配置（详见[Option及默认配置](#Option及默认配置)） | {} |
+| 名称 | 说明 | 默认值 | 可选值 |
+| :--- | :--- | :--- | :--- |
+| hide-input | 隐藏默认的`<input type="file" />` | false | true or false |
+| option | vue-cropper 的 Attr 配置 | {} | 详见[Option及默认配置](#Option及默认配置) |
 
 ## Option及默认配置
 
 关于配置详细信息，请查看源文档，感谢原作者xyxiao001大佬的[vue-cropper](https://github.com/xyxiao001/vue-cropper)
-<table style="text-align: center">
-  <thead>
-    <tr>
-        <td>名称</td>
-        <td>功能</td>
-        <td>默认值</td>
-        <td>可选值</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td>ceilbutton</td>
-        <td>操作按钮是否在顶部</td>
-        <td>false</td>
-        <td>true || false</td>
-    </tr>
-    <tr>
-        <td>outputSize</td>
-        <td>裁剪生成图片的质量</td>
-        <td>1</td>
-        <td>0.1 - 1</td>
-    </tr>
-    <tr>
-        <td>outputType</td>
-        <td>裁剪生成图片的格式</td>
-        <td>png</td>
-        <td>jpeg(就是jpg) || png || webp</td>
-    </tr>
-    <tr>
-        <td>info</td>
-        <td>裁剪框的大小信息</td>
-        <td>false</td>
-        <td>true || false</td>
-    </tr>
-    <tr>
-        <td>canScale</td>
-        <td>图片是否允许滚轮缩放</td>
-        <td>true 这个手机上用不到，电脑调试有用</td>
-        <td>true || false</td>
-    </tr>
-    <tr>
-        <td>autoCropWidth</td>
-        <td>默认生成截图框宽度</td>
-        <td>容器的80%</td>
-        <td>0~max</td>
-    </tr>
-    <tr>
-        <td>autoCropHeight</td>
-        <td>默认生成截图框高度</td>
-        <td>容器的80%</td>
-        <td>0~max</td>
-    </tr>
-    <tr>
-        <td>fixed</td>
-        <td>是否开启截图框宽高固定比例</td>
-        <td>true</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>fixedNumber</td>
-        <td>截图框的宽高比例</td>
-        <td>[1, 1]</td>
-        <td>[宽度, 高度]</td>
-    </tr>
-    <tr>
-        <td>full</td>
-        <td>是否输出原图比例的截图</td>
-        <td>false</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>fixedBox</td>
-        <td>固定截图框大小 不允许改变</td>
-        <td>true</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>canMove</td>
-        <td>上传图片是否可以移动</td>
-        <td>true</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>canMoveBox</td>
-        <td>截图框能否拖动</td>
-        <td>false</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>original</td>
-        <td>上传图片按照原始比例渲染</td>
-        <td>false</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>centerBox</td>
-        <td>截图框是否被限制在图片里面</td>
-        <td>true</td>
-        <td>true | false</td>
-    </tr>
-	<tr>
-        <td>high</td>
-        <td>是否按照设备的dpr 输出等比例图片</td>
-        <td>true</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>infoTrue</td>
-        <td>true 为展示真实输出图片宽高  false 展示看到的截图框宽高</td>
-        <td>false</td>
-        <td>true | false</td>
-    </tr>
-    <tr>
-        <td>maxImgSize</td>
-        <td>限制图片最大宽度和高度</td>
-        <td>2000</td>
-        <td>0-max</td>
-    </tr>
-    <tr>
-        <td>enlarge</td>
-        <td>图片根据截图框输出比例倍数</td>
-        <td>1</td>
-        <td>0-max(建议不要太大不然会卡死的呢)</td>
-    </tr>
-    <tr>
-        <td>mode</td>
-        <td>图片默认渲染方式</td>
-        <td>100%</td>
-        <td>contain , cover, 100px, 100% auto</td>
-    </tr>
-  </tbody>
-</table>
+| 名称 | 功能 | 默认值 | 可选值 |
+| :--- | :--- | :--- | :--- |
+| ceilbutton | 操作按钮是否在顶部 | false | true or false |
+| outputSize | 裁剪生成图片的质量 | 1 | 0.1 - 1 |
+| outputType | 裁剪生成图片的格式 | png | jpeg(就是jpg) or png or webp |
+| info | 裁剪框的大小信息 | false | true or false |
+| canScale | 图片是否允许滚轮缩放 | true(这个手机上用不到，电脑调试有用) | true or false |
+| autoCropWidth | 默认生成截图框宽度 | 容器的80% | 0~max |
+| autoCropHeight | 默认生成截图框高度 | 容器的80% | 0~max |
+| fixed | 是否开启截图框宽高固定比例 | true | true or false |
+| fixedNumber | 截图框的宽高比例 | [1, 1] | [宽度, 高度] |
+| full | 是否输出原图比例的截图 | false | true or false |
+| fixedBox | 固定截图框大小 不允许改变 | true | true or false |
+| canMove | 上传图片是否可以移动 | true | true or false |
+| canMoveBox | 截图框能否拖动 | false | true or false |
+| original | 上传图片按照原始比例渲染 | false | true or false |
+| centerBox | 截图框是否被限制在图片里面 | true | true or false |
+| high | 是否按照设备的dpr 输出等比例图片 | true | true or false |
+| infoTrue | true 为展示真实输出图片宽高  false 展示看到的截图框宽高 | false | true or false |
+| maxImgSize | 限制图片最大宽度和高度 | 2000 | 0-max |
+| enlarge | 图片根据截图框输出比例倍数 | 1 | 0-max(建议不要太大不然会卡死的呢) |
+| mode | 图片默认渲染方式 | 100% | contain, cover, 100px, 100% auto |
+| cancelButtonText | 取消按钮文本 | 取消 | -- |
+| confirmButtonText | 确定按钮文本 | 确定 | -- |
+| cancelButtonBackgroundColor | 取消按钮背景色 | #606266 | -- |
+| confirmButtonBackgroundColor | 确定按钮背景色 | #ed594c | -- |
+| cancelButtonTextColor | 取消按钮字体色 | #ffffff | -- |
+| confirmButtonTextColor | 确定按钮字体色 | #ffffff | -- |
 
 ## 事件
 
@@ -298,6 +194,7 @@ export default {
 | getFile | 获取裁剪完成的 File 数据 | File |
 | get-file | 同上，兼容 CDN 使用 | File |
 | imgorigoinf | 获取裁剪前照片的数据（使用 `hide-input` 后不会触发） | file |
+| canceltailor | 进入裁剪框页面按取消按钮触发 | -- |
 
 ## 接口
 
@@ -309,15 +206,21 @@ export default {
 
 ## 版本
 
+### 1.2.2
+加入了用户点击取消按钮的回调事件(canceltailor)事件@[Issues#13](https://github.com/2277419213/vue-cropper-h5/issues/13)   
+优化了按钮在部分手机上的样式问题，感谢@[尤小小](https://github.com/habc0807)提出的问题   
+加入按钮的可配置选项，文字，文字颜色，背景色，详见[Option及默认配置](#Option及默认配置)
+
 ### 1.2.1
-因为之前为了适配h5，我对原作者的vue-cropper有一点小修改，后面是放在coding上，然后coding改了路由规则，于是npm下载就报错了，感谢发现的热心码友告诉我，我得以即时更新，现在仓库挪到了github上，可能有点慢
+因为之前为了适配h5，我对原作者的vue-cropper有一点小修改，后面是放在coding上，然后coding改了路由规则，于是npm下载就报错了，感谢发现的热心码友告诉我，我得以即时更新，现在仓库挪到了github上，可能有点慢   
 请耐心等待，其次1.2.1更新了原作者修复的bug，关于谷歌81内核和ios13.5的图片旋转的，我也一并同步了，有兴趣的朋友可以去看看https://www.chromestatus.com/feature/6313474512650240
 
 ### 1.2.0
 新增getFile和get-file获取裁剪完成的 File 数据，感谢@[Violet_Ice紫冰](https://github.com/violetice)
 
 ### 1.1.9
-更新了一下cdn引入时的事件，因为之前事件getbase64Data和getblobData会在cdn引入的时候出现无法响应的情况，具体原因不明，如有大佬知道麻烦告知一下，谢谢！于是在不影响旧事件的前提下，新增getbase64和getblob方法，方便各位cdn引入的朋友调用，感谢@[awen1988](https://github.com/awen1988),提出的问题及解决方案！
+更新了一下cdn引入时的事件，因为之前事件getbase64Data和getblobData会在cdn引入的时候出现无法响应的情况，具体原因不明，如有大佬知道麻烦告知一下，谢谢！   
+于是在不影响旧事件的前提下，新增getbase64和getblob方法，方便各位cdn引入的朋友调用，感谢@[awen1988](https://github.com/awen1988),提出的问题及解决方案！
 
 ### 1.1.8
 感谢下@[Violet_Ice紫冰](https://github.com/violetice)，一个很厉害的大佬，指出了我很多不规范的地方，还新加了两个接口（详见[接口](#接口)，也看了大佬指导的[样式篇规范](https://fly.layui.com/jie/29160/)收益颇丰，再次感谢大佬！   
