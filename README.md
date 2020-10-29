@@ -206,9 +206,12 @@ export default {
 
 ## 版本
 
+### 1.2.3
+更新了原作者修复的bug，关于ios13.4图片旋转的问题
+
 ### 1.2.2
-加入了用户点击取消按钮的回调事件(canceltailor)事件@[Issues#13](https://github.com/2277419213/vue-cropper-h5/issues/13)   
-优化了按钮在部分手机上的样式问题，感谢@[尤小小](https://github.com/habc0807)提出的问题   
+加入了用户点击取消按钮的回调事件(canceltailor)事件@[Issues#13](https://github.com/2277419213/vue-cropper-h5/issues/13)      
+优化了按钮在部分手机上的样式问题，感谢@[尤小小](https://github.com/habc0807)提出的问题    
 加入按钮的可配置选项，文字，文字颜色，背景色，详见[Option及默认配置](#Option及默认配置)
 
 ### 1.2.1
