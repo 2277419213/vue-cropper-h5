@@ -141,7 +141,7 @@ export default {
 
 ## 演示网站
 
-###### 可以到[http://www.yi-school.top/cropper](http://www.yi-school.top/cropper/#/)查看效果演示
+###### 可以到[http://www.yi-school.top](http://www.yi-school.top)查看效果演示
 
 ## Attr
 
