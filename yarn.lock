@@ -5252,9 +5252,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-"vue-cropper@git+https://github.com/2277419213/vue-cropper#master":
-  version "0.5.4"
-  resolved "git+https://github.com/2277419213/vue-cropper#e5e41e322c12144ce5a366d940bd1d4e76c7b248"
+"vue-cropper@git+https://gitee.com/JuLizhanzhan/vue-cropper#master":
+  version "0.5.5"
+  uid "7f1711b39caaec9e7acd35468ab58fbc9d559edb"
+  resolved "git+https://gitee.com/JuLizhanzhan/vue-cropper#7f1711b39caaec9e7acd35468ab58fbc9d559edb"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
@@ -5512,9 +5513,9 @@ wrappy@1:
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
 ws@^6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-6.2.1.tgz#442fdf0a47ed64f59b6a5d8ff130f4748ed524fb"
-  integrity sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-6.2.2.tgz#dd5cdbd57a9979916097652d78f1cc5faea0c32e"
+  integrity sha512-zmhltoSR8u1cnDsD43TX59mzoMZsLKqUweyYBAIvTngR3shc0W6aOZylZmq/7hqyVxPdi+5Ud2QInblgyE72fw==
   dependencies:
     async-limiter "~1.0.0"
 
