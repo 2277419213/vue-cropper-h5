@@ -1,0 +1,46 @@
+{
+  "name": "vue-cropper-h5",
+  "version": "2.0.0",
+  "description": "h5的万能裁剪框，基于vue3.0还是熟悉的样式，还是熟悉的配参！",
+  "author": "居里栈栈",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/2277419213/vue-cropper-h5/issues"
+  },
+  "homepage": "https://github.com/2277419213/vue-cropper-h5#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2277419213/vue-cropper-h5.git"
+  },
+  "module": "./dist/H5Cropper.es.js",
+  "main": "./dist/H5Cropper.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/H5Cropper.es.js",
+      "require": "./dist/H5Cropper.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.16",
+    "vue-cropper": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vue-tsc": "^0.3.0"
+  }
+}
