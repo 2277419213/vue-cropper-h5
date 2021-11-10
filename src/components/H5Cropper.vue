@@ -89,7 +89,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref, watch, toRefs } from "vue";
 import "vue-cropper/dist/index.css";
 import { VueCropper } from "vue-cropper";
 export default defineComponent({
@@ -111,6 +111,7 @@ export default defineComponent({
     const cropper = ref<any>(null);
     const headinput = ref<any>(null);
     const img = ref<any>("");
+    //动态监听条件变动
     const defaultConfig = {
       ceilbutton: false, //顶部按钮，默认底部
       outputSize: 1, //裁剪生成图片的质量
@@ -140,7 +141,31 @@ export default defineComponent({
       cancelButtonTextColor: "#ffffff", //取消按钮字体色
       confirmButtonTextColor: "#ffffff", //确定按钮字体色
     };
-    const config = reactive({ ...defaultConfig, ...props.option });
+    const state = reactive({
+      config: { ...defaultConfig, ...props.option },
+    });
+
+    watch(
+      () => props.option,
+      () => {
+        //do something
+        console.log("改变参数");
+
+        delete props.option.autoCrop; // TODO: 不开放权限
+        if (
+          typeof props?.option?.outputType === "string" &&
+          ["jpeg", "png", "webp"].indexOf(props.option.outputType) === -1
+        ) {
+          console.warn("Option.outputType is not [jpeg, png, webp]");
+          delete props.option.outputType; // TODO: 改回默认属性不影响调用
+        }
+        state.config = Object.assign(state.config, props.option);
+      },
+      {
+        deep: true,
+        immediate: true,
+      }
+    );
     //裁剪框移动
     function moving(e: any) {
       //   console.log(e);
@@ -154,11 +179,11 @@ export default defineComponent({
     //选择照片
     async function upphoto(e: any) {
       let photourl = e.target.files[0];
-      // headinput.vaule.value = null;
+      headinput.value.value = null;
       if (photourl != undefined) {
         ctx.emit("imgorigoinf", photourl);
         img.value = await onloadimg(photourl);
-        config.autoCrop = true;
+        state.config.autoCrop = true;
         setTimeout(() => {
           addsolide();
         }, 10);
@@ -186,7 +211,7 @@ export default defineComponent({
         ctx.emit("getbase64Data", data);
         ctx.emit("getbase64", data);
         img.value = "";
-        config.autoCrop = false;
+        state.config.autoCrop = false;
       });
       // 获取截图的blob数据
       cropper.value.getCropBlob((data: any) => {
@@ -198,17 +223,17 @@ export default defineComponent({
           jpeg: "jpg",
           png: "png",
           webp: "webp",
-        }[config.outputType];
+        }[state.config.outputType];
         const time = new Date().getTime();
         const file = new File([data], `${time}.${suffix}`, {
-          type: `image/${config.outputType}`,
+          type: `image/${state.config.outputType}`,
         });
 
         ctx.emit("getFile", file);
         ctx.emit("get-file", file);
 
         img.value = "";
-        config.autoCrop = false;
+        state.config.autoCrop = false;
       });
     }
     //旋转照片
@@ -357,8 +382,57 @@ export default defineComponent({
         box.appendChild(BottomRightSide);
       }
     }
+    /**
+     * 载入文件
+     * template:
+     *    <h5-cropper hide-input ref="cropper">
+     *
+     * javascript:
+     *    this.$refs.cropper.loadFile()
+     *
+     * @param file
+     */
+    function loadFile(file: File) {
+      if (file instanceof File) {
+        onloadimg(file).then(base64 => {
+          img.value = base64;
+          setTimeout(() => {
+            state.config.autoCrop = true;
+            addsolide();
+          }, 10);
+        });
+      } else {
+        throw new Error("Arguments file is not File");
+      }
+    }
+    /**
+     *
+     * @param base64
+     */
+    function loadBase64(base64: string) {
+      if (typeof base64 !== "string") {
+        throw new Error("Arguments base64 is not string");
+      }
+      const base = base64.split(",");
+      if (!/^data:image\/(.*?);base64$/.test(base[0])) {
+        throw new Error("Arguments base64 MIME is not image/*");
+      }
+
+      // Base64 Regex @see https://learnku.com/articles/42295
+      if (
+        !/^[\/]?([\da-zA-Z]+[\/+]+)*[\da-zA-Z]+([+=]{1,2}|[\/])?$/.test(base[1])
+      ) {
+        throw new Error("Not standard base64");
+      }
+
+      img.value = base64;
+      setTimeout(() => {
+        state.config.autoCrop = true;
+        addsolide();
+      }, 10);
+    }
     return {
-      config,
+      ...toRefs(state),
       moving,
       upphoto,
       img,
@@ -367,6 +441,8 @@ export default defineComponent({
       canceltailor,
       tailoring,
       rotating,
+      loadBase64,
+      loadFile,
     };
   },
 });

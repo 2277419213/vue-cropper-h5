@@ -1,6 +1,6 @@
 {
   "name": "vue-cropper-h5",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "h5的万能裁剪框，基于vue3.0还是熟悉的样式，还是熟悉的配参！",
   "author": "居里栈栈",
   "license": "MIT",

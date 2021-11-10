@@ -1,4 +1,6 @@
 var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
 var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __propIsEnum = Object.prototype.propertyIsEnumerable;
@@ -14,7 +16,8 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-import { defineComponent, pushScopeId, popScopeId, openBlock, createElementBlock, withDirectives, createElementVNode, normalizeStyle, vShow, createCommentVNode, normalizeClass, toDisplayString, ref, reactive, resolveComponent, createVNode } from "vue";
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+import { defineComponent, pushScopeId, popScopeId, openBlock, createElementBlock, withDirectives, createElementVNode, normalizeStyle, vShow, createCommentVNode, normalizeClass, toDisplayString, ref, reactive, watch, toRefs, resolveComponent, createVNode } from "vue";
 var index = "";
 const u = {};
 u.getData = (t) => new Promise((e, i) => {
@@ -579,7 +582,22 @@ const _sfc_main = defineComponent({
       cancelButtonTextColor: "#ffffff",
       confirmButtonTextColor: "#ffffff"
     };
-    const config = reactive(__spreadValues(__spreadValues({}, defaultConfig), props.option));
+    const state = reactive({
+      config: __spreadValues(__spreadValues({}, defaultConfig), props.option)
+    });
+    watch(() => props.option, () => {
+      var _a;
+      console.log("\u6539\u53D8\u53C2\u6570");
+      delete props.option.autoCrop;
+      if (typeof ((_a = props == null ? void 0 : props.option) == null ? void 0 : _a.outputType) === "string" && ["jpeg", "png", "webp"].indexOf(props.option.outputType) === -1) {
+        console.warn("Option.outputType is not [jpeg, png, webp]");
+        delete props.option.outputType;
+      }
+      state.config = Object.assign(state.config, props.option);
+    }, {
+      deep: true,
+      immediate: true
+    });
     function moving(e) {
       let modal = document.getElementsByClassName("cropper-modal")[0];
       if (e.moving) {
@@ -590,10 +608,11 @@ const _sfc_main = defineComponent({
     }
     async function upphoto(e) {
       let photourl = e.target.files[0];
+      headinput.value.value = null;
       if (photourl != void 0) {
         ctx.emit("imgorigoinf", photourl);
         img.value = await onloadimg(photourl);
-        config.autoCrop = true;
+        state.config.autoCrop = true;
         setTimeout(() => {
           addsolide();
         }, 10);
@@ -617,7 +636,7 @@ const _sfc_main = defineComponent({
         ctx.emit("getbase64Data", data);
         ctx.emit("getbase64", data);
         img.value = "";
-        config.autoCrop = false;
+        state.config.autoCrop = false;
       });
       cropper.value.getCropBlob((data) => {
         ctx.emit("getblobData", data);
@@ -626,15 +645,15 @@ const _sfc_main = defineComponent({
           jpeg: "jpg",
           png: "png",
           webp: "webp"
-        }[config.outputType];
+        }[state.config.outputType];
         const time = new Date().getTime();
         const file = new File([data], `${time}.${suffix}`, {
-          type: `image/${config.outputType}`
+          type: `image/${state.config.outputType}`
         });
         ctx.emit("getFile", file);
         ctx.emit("get-file", file);
         img.value = "";
-        config.autoCrop = false;
+        state.config.autoCrop = false;
       });
     }
     function rotating() {
@@ -768,8 +787,37 @@ const _sfc_main = defineComponent({
         box.appendChild(BottomRightSide);
       }
     }
-    return {
-      config,
+    function loadFile(file) {
+      if (file instanceof File) {
+        onloadimg(file).then((base64) => {
+          img.value = base64;
+          setTimeout(() => {
+            state.config.autoCrop = true;
+            addsolide();
+          }, 10);
+        });
+      } else {
+        throw new Error("Arguments file is not File");
+      }
+    }
+    function loadBase64(base64) {
+      if (typeof base64 !== "string") {
+        throw new Error("Arguments base64 is not string");
+      }
+      const base = base64.split(",");
+      if (!/^data:image\/(.*?);base64$/.test(base[0])) {
+        throw new Error("Arguments base64 MIME is not image/*");
+      }
+      if (!/^[\/]?([\da-zA-Z]+[\/+]+)*[\da-zA-Z]+([+=]{1,2}|[\/])?$/.test(base[1])) {
+        throw new Error("Not standard base64");
+      }
+      img.value = base64;
+      setTimeout(() => {
+        state.config.autoCrop = true;
+        addsolide();
+      }, 10);
+    }
+    return __spreadProps(__spreadValues({}, toRefs(state)), {
       moving,
       upphoto,
       img,
@@ -777,8 +825,10 @@ const _sfc_main = defineComponent({
       headinput,
       canceltailor,
       tailoring,
-      rotating
-    };
+      rotating,
+      loadBase64,
+      loadFile
+    });
   }
 });
 const _hoisted_1 = { class: "upbtn" };
@@ -884,5 +934,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("", true)
   ]);
 }
-var H5Cropper = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-675e13ee"]]);
+var H5Cropper = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-3cb67fea"]]);
 export { H5Cropper as default };

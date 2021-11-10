@@ -3,10 +3,15 @@
     <div class="cropper">
       <img :src="img" class="img" />
       <!-- option是配置，格式是对象，getbase64Data是组件的一个方法获取裁剪完的头像 2.14新增一个获取getblobData的方法 -->
-      <H5Cropper @getbase64="getbase64" :option="option"></H5Cropper>
+      <H5Cropper
+        ref="cropper"
+        @getbase64="getbase64"
+        :option="option"
+        hide-input
+      ></H5Cropper>
       <!-- <vueCropper ref="cropper" :img="img"></vueCropper> -->
     </div>
-    <div class="info">
+    <div class="info" @click="changeoption()">
       <div>作者：居里栈栈</div>
       <div>Wechat：812936565</div>
     </div>
@@ -23,17 +28,24 @@ export default defineComponent({
     H5Cropper,
   },
   setup() {
+    const cropper = ref<any>(null);
     const img = ref("http://www.yi-school.top/logo.jpg");
     function getbase64(base64: any) {
       img.value = base64;
     }
-    const option = {
+    const option = ref<any>({
       ceilbutton: true,
-    };
+    });
+    function changeoption() {
+      option.value.fixedNumber = [1, 2];
+      // cropper.value.loadBase64()
+    }
     return {
+      cropper,
       img,
       option,
       getbase64,
+      changeoption,
     };
   },
 });
