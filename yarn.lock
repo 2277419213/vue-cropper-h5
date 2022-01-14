@@ -2477,9 +2477,9 @@ flush-write-stream@^1.0.0:
     readable-stream "^2.3.6"
 
 follow-redirects@^1.0.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
-  integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+  integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -5252,9 +5252,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-"vue-cropper@git+https://github.com/2277419213/vue-cropper#master":
-  version "0.5.4"
-  resolved "git+https://github.com/2277419213/vue-cropper#e5e41e322c12144ce5a366d940bd1d4e76c7b248"
+"vue-cropper@git+https://gitee.com/JuLizhanzhan/vue-cropper#master":
+  version "0.5.5"
+  uid "06f7433e641fd00abcfc877dbcf76eab56817083"
+  resolved "git+https://gitee.com/JuLizhanzhan/vue-cropper#06f7433e641fd00abcfc877dbcf76eab56817083"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
