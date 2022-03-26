@@ -3515,9 +3515,9 @@ minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 minipass-collect@^1.0.2:
   version "1.0.2"
@@ -5252,9 +5252,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-"vue-cropper@git+https://github.com/2277419213/vue-cropper#master":
-  version "0.5.4"
-  resolved "git+https://github.com/2277419213/vue-cropper#e5e41e322c12144ce5a366d940bd1d4e76c7b248"
+"vue-cropper@git+https://gitee.com/JuLizhanzhan/vue-cropper#master":
+  version "0.5.5"
+  uid "06f7433e641fd00abcfc877dbcf76eab56817083"
+  resolved "git+https://gitee.com/JuLizhanzhan/vue-cropper#06f7433e641fd00abcfc877dbcf76eab56817083"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
